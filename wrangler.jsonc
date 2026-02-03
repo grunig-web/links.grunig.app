@@ -1,10 +1,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "sink",
-  "main": ".output/server/index.mjs",
+  "name": "links-grunig-app",
+  "main": "dist/server/index.mjs",
   "assets": {
     "binding": "ASSETS",
-    "directory": ".output/public",
+    "directory": "dist/public",
     "html_handling": "drop-trailing-slash"
   },
   "compatibility_date": "2025-05-08",
@@ -13,14 +13,6 @@
   ],
   "keep_vars": true,
   "upload_source_maps": true,
-  "observability": {
-    "logs": {
-      "enabled": true
-    },
-    "traces": {
-      "enabled": true
-    }
-  },
   "ai": {
     "binding": "AI",
     "remote": true
@@ -35,7 +27,7 @@
     {
       "binding": "KV",
       "preview_id": "ef93d42dc4b34969bab404d2e80f8dd3",
-      "id": "ef93d42dc4b34969bab404d2e80f8dd3" // IMPORTANT: Change this to your KV namespace ID
+      "id": "a6e5103c01f24b0b99e6679aa67db9f5" // IMPORTANT: Change this to your KV namespace ID
     }
   ],
   "r2_buckets": [
@@ -46,6 +38,13 @@
     }
   ],
   "triggers": {
-    "crons": ["0 0 * * *"] // Run backup task daily at 00:00 UTC
+    "crons": ["1 0 * * *"] // Run backup task daily at 01:00 UTC
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "placement": {
+    "mode": "smart"
   }
 }
